@@ -2,6 +2,8 @@ const map = L.map("map").setView([51.919437, 19.145136], 5);
 
 const marker = L.marker([51.919437, 19.145136]).addTo(map);
 
+//zmiana w pliku
+
 // // // // const marker = [];
 // // // // let number = 10;
 // // // // let lat = 51.919437;
