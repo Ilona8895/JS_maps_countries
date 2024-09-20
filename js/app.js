@@ -1,30 +1,12 @@
-const map = L.map("map").setView([51.919437, 19.145136], 5);
+const map = L.map("map").setView([51.919437, 19.145136], 6);
 
 const marker = L.marker([51.919437, 19.145136]).addTo(map);
-
-// // // // const marker = [];
-// // // // let number = 10;
-// // // // let lat = 51.919437;
-// // // // let long = 19.145136;
-// // // // for (let i = 0; i < number; i += 0.005) {
-// // // //   marker.push(L.marker([lat + i, long + i]).addTo(map));
-// // // // }
 
 L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
   maxZoom: 19,
   attribution:
     '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 }).addTo(map);
-
-googleHybrid = L.tileLayer(
-  "http://{s}.google.com/vt/lyrs=s,m&x={x}&y={y}&z={z}",
-  {
-    maxZoom: 20,
-    subdomains: ["mt0", "mt1", "mt2", "mt3"],
-  }
-);
-
-googleHybrid.addTo(map);
 
 (async () => {
   const parent = document.querySelector("#countrySelect");
@@ -68,7 +50,7 @@ parent.addEventListener("change", (e) => {
 
 function fillCountryData(text) {
   const textEl = text[0];
-  // console.log(textEl)
+  console.log(textEl);
 
   const countryData = document.querySelector("#countryData");
   countryData.innerHTML = `
@@ -96,7 +78,7 @@ function fillCountryData(text) {
   countryFlag.setAttribute("src", textEl.flags.png);
   countryFlag.setAttribute("alt", textEl.flags.alt);
 
-  map.setView([textEl.latlng[0], textEl.latlng[1]], 5);
+  map.setView([textEl.latlng[0], textEl.latlng[1]], 6);
 
   marker.setLatLng([textEl.latlng[0], textEl.latlng[1]]);
 }
