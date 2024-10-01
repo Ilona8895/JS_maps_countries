@@ -13,9 +13,8 @@ L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
 
   const res = await fetch("https://restcountries.com/v3.1/all");
   const json = await res.json();
-  // console.log(json);
+
   json.forEach((element) => {
-    // console.log(element.name.common)
     const option = document.createElement("option");
     option.value = element.name.common;
     option.innerText = element.name.common;
