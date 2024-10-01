@@ -26,30 +26,37 @@ L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
 })();
 
 window.addEventListener("load", (e) => {
-  const xhttp = new XMLHttpRequest();
-  xhttp.onload = function () {
-    if (xhttp.readyState === 4 && xhttp.status === 200)
-      fillCountryData(JSON.parse(xhttp.response));
-  };
-  xhttp.open("GET", `https://restcountries.com/v3.1/name/Poland`, true);
-  xhttp.send();
+  fetch("https://restcountries.com/v3.1/name/Poland")
+    .then((res) => res.json())
+    .then((res) => fillCountryData(res));
+
+  // const xhttp = new XMLHttpRequest();
+  // xhttp.onload = function () {
+  //   if (xhttp.readyState === 4 && xhttp.status === 200)
+  //     fillCountryData(JSON.parse(xhttp.response));
+  // };
+  // xhttp.open("GET", `https://restcountries.com/v3.1/name/Poland`, true);
+  // xhttp.send();
 });
 
 parent.addEventListener("change", (e) => {
   const option = e.target.value;
 
-  const xhttp = new XMLHttpRequest();
-  xhttp.onload = function () {
-    if (xhttp.readyState === 4 && xhttp.status === 200)
-      fillCountryData(JSON.parse(xhttp.response));
-  };
-  xhttp.open("GET", `https://restcountries.com/v3.1/name/${option}`, true);
-  xhttp.send();
+  fetch(`https://restcountries.com/v3.1/name/${option}`)
+    .then((res) => res.json())
+    .then((res) => fillCountryData(res));
+
+  // const xhttp = new XMLHttpRequest();
+  // xhttp.onload = function () {
+  //   if (xhttp.readyState === 4 && xhttp.status === 200)
+  //     fillCountryData(JSON.parse(xhttp.response));
+  // };
+  // xhttp.open("GET", `https://restcountries.com/v3.1/name/${option}`, true);
+  // xhttp.send();
 });
 
 function fillCountryData(text) {
   const textEl = text[0];
-  console.log(textEl);
 
   const countryData = document.querySelector("#countryData");
   countryData.innerHTML = `
